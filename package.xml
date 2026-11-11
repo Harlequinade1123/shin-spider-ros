@@ -8,7 +8,7 @@
     gamepad_command logic from sensor_msgs/Joy and sends [v]/[k]/[m] lines to the OpenCM
     firmware OpenCMSpiderMotion_v2.0_XC over serial. Rendering is not ported.
   </description>
-  <maintainer email="ntlab@todo.todo">ntlab</maintainer>
+  <maintainer email="112243064+Harlequinade1123@users.noreply.github.com">Harlequinade1123</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>catkin</buildtool_depend>
