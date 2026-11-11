@@ -1,0 +1,22 @@
+<launch>
+  <arg name="device_name" default="/dev/ttyUSB0"/>
+  <arg name="baudrate"    default="57600"/>
+  <arg name="dry_run"     default="false"/>
+  <arg name="joy_dev"     default="/dev/input/js0"/>
+
+  <!-- gamepad -->
+  <node pkg="joy" type="joy_node" name="joy_node" output="screen">
+    <param name="dev" value="$(arg joy_dev)"/>
+    <param name="deadzone" value="0.05"/>
+    <!-- repeat while held: Processing polls the pad every frame -->
+    <param name="autorepeat_rate" value="20"/>
+  </node>
+
+  <!-- shin_spider (port of Processing original_spider_controller) -->
+  <node pkg="shin_spider" type="shin_spider_node" name="shin_spider_node" output="screen">
+    <rosparam file="$(find shin_spider)/config/shin_spider.yaml" command="load"/>
+    <param name="device_name" value="$(arg device_name)"/>
+    <param name="baudrate"    value="$(arg baudrate)"/>
+    <param name="dry_run"     value="$(arg dry_run)"/>
+  </node>
+</launch>

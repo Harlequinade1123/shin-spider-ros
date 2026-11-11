@@ -1,0 +1,53 @@
+# shin_spider_node parameters (loaded into the node's private namespace)
+
+# --- serial (OpenCM9.04 + OpenCMSpiderMotion_v2.0_XC) ---
+# Processing used 57600 = BT-210 on Serial2 of the firmware.
+# When connecting the OpenCM USB port (firmware "Serial") use 115200.
+device_name: /dev/ttyUSB0
+baudrate: 57600
+# true: never open the port, only log + publish ~commands.
+# If the port cannot be opened the node falls back to dry-run automatically.
+dry_run: false
+# Auto reconnect when the serial device disappears / write fails (retry every reconnect_interval [s],
+# wait reconnect_wait [s] after reopening). Also applies when the device was absent at startup.
+reconnect: true
+reconnect_interval: 1.0
+reconnect_wait: 2.0
+# Auto reconnect when the serial device disappears / write fails (retry every reconnect_interval [s],
+# wait reconnect_wait [s] after reopening). Also applies when the device was absent at startup.
+reconnect: true
+reconnect_interval: 1.0
+reconnect_wait: 2.0
+publish_commands: true      # std_msgs/String on ~commands (each [v]/[k]/[m]/[n] line)
+loop_rate: 100              # Processing frameRate(100)
+
+joy_topic: /joy
+
+# --- Joy -> Processing gamepad variables (defaults: Xbox pad, xpad driver) ---
+# slider = int(axes[index] * scale). Processing (DirectInput) conventions:
+#   slider_LX / slider_RX : stick up-down,   DOWN  positive  -> joy up is +1, so scale -100
+#   slider_LY / slider_RY : stick left-right, RIGHT positive -> joy left is +1, so scale -100
+axes:
+  slider_LX: {index: 1, scale: -100.0}
+  slider_LY: {index: 0, scale: -100.0}
+  slider_RX: {index: 4, scale: -100.0}
+  slider_RY: {index: 3, scale: -100.0}
+  # slider_FR (+L trigger / -R trigger, threshold +-50 -> steering change)
+  # mode "triggers": (pressL - pressR) * scale, trigger axes rest at +1, pressed -1
+  # mode "axis":     int(axes[index] * scale)
+  slider_FR: {mode: triggers, left_trigger_axis: 2, right_trigger_axis: 5, scale: 100.0, index: -1}
+
+buttons: {A: 0, B: 1, X: 2, Y: 3, LB: 4, RB: 5, Back: 6, Start: 7, LA: 9, RA: 10}
+
+# hat_XY (gamecontrolplus POV code): 2 up=spread, 6 down=shrink, 8 left=rotate -45, 4 right=rotate +45
+hat:
+  mode: axes            # or "buttons" (set button_up/down/left/right)
+  axis_x: 6             # D-pad left/right
+  axis_y: 7             # D-pad up/down
+  x_left_positive: true
+  y_up_positive: true
+  threshold: 0.5
+  button_up: -1
+  button_down: -1
+  button_left: -1
+  button_right: -1
