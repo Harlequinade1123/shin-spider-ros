@@ -25,6 +25,10 @@ catkin build shin_spider --no-deps --make-args tests
 catkin run_tests shin_spider --no-deps
 ```
 
+## Firmware
+
+OpenCM firmware is in [`firmware/opencm`](firmware/opencm).
+
 ## License
 
 MIT
