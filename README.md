@@ -47,8 +47,8 @@ catkin build shin_spider --no-deps --make-args tests
 # または: catkin run_tests shin_spider --no-deps
 ```
 
-- golden: `test/golden/golden.txt` (`tools/java_golden/run.sh` が元の .pde を Java スタブで
-  コンパイルして生成)。ファイルが無い場合 golden テストは SKIP。
+- golden: `test/golden/golden.txt` (元の Processing (Java) コードの出力を記録したデータ)。
+  ファイルが無い場合 golden テストは SKIP。
 - `shin_spider_dump [case ...]` で C++ 側を同じ形式で出力できる (diff 用)。
   case 名の例: `walkingMotion(0,3)`, `walkingMotion(steering=1.5707964,mode=0)`,
   `sweepingMotion(-20)`, `seq[walkingMotion(0.0,1);resetMotion(0.0)]`
@@ -140,7 +140,7 @@ joy_node は「上 = +1」「左 = +1」なので scale を **−100** にして
 - `include/shin_spider/`, `src/`: ROS 非依存ライブラリ `shin_spider_core`
   (時計 `Clock::millis()` と出力 `CommandSink` を注入) + `shin_spider_node.cpp`
 - `src/MotionTestHook.cpp`: テスト用フック (`test_hook::runCase`, `stepMotionAllIndices`)
-- `tools/shin_spider_dump.cpp`: golden 形式ダンプ, `tools/java_golden/`: Java 版 golden 生成
+- `tools/shin_spider_dump.cpp`: golden 形式ダンプ
 - `test/`: gtest 3 本, `test/golden/golden.txt`
 
 ## License

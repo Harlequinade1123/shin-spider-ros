@@ -46,7 +46,7 @@ add_executable(shin_spider_node src/shin_spider_node.cpp)
 target_link_libraries(shin_spider_node shin_spider_core ${catkin_LIBRARIES})
 add_dependencies(shin_spider_node ${catkin_EXPORTED_TARGETS})
 
-# Dumps every motion in the golden-data text format (for diffing against the Java dump)
+# Dumps every motion in the golden-data text format (for diffing against test/golden/golden.txt)
 add_executable(shin_spider_dump tools/shin_spider_dump.cpp)
 target_link_libraries(shin_spider_dump shin_spider_core)
 
